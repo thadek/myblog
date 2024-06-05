@@ -1,3 +1,5 @@
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -16,6 +18,7 @@
                             <tr>
                                 <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Titulo</th>
+                                <th class="px-4 py-2">Categories</th>
                                 <th class="px-4 py-2">Actions</th>
                             </tr>
                         </thead>
@@ -24,6 +27,13 @@
                                 <tr>
                                     <td class="border px-4 py-2">{{ $post->id }}</td>
                                     <td class="border px-4 py-2">{{ $post->title }}</td>
+                                    <td class="border px-4 py-2">
+                                        @foreach($post->categories as $record)
+                                            <span class="bg-gray-200 text-gray-800 dark:text-gray-100 font-bold py-1 px-4 rounded-full">
+                                                {{ $record->nombre }}
+                                            </span>
+                                        @endforeach
+                                    </td>
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('posts.show', $post->id) }}">
                                             <button
@@ -52,21 +62,12 @@
 
                                             </button>
                                         </a>
-                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
-                                            class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                                <!-- Icon delete -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="size-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                                </svg>
-                                            </button>
-                                        </form>
+                                        <button type="button" onclick="deletePost('{{ $post->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                            <!-- Icon delete -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                            </svg>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -77,3 +78,37 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function deletePost(id) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, bórralo!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/posts/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                }).then(() => {
+                    console.log('Eliminado');
+                });
+                Swal.fire(
+                    'Eliminado!',
+                    'Tu post ha sido eliminado.',
+                    'success'
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                })
+            }
+        })
+    }
+</script>

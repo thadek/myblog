@@ -12,8 +12,19 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                    
                     <p class="text-lg mt-2">{{ $post->content }}</p>
+
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold">Categorías:</h3>
+                        <ul>
+                            @foreach($post->categories as $category)
+                                <li>{{ $category->nombre }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 
          
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>
