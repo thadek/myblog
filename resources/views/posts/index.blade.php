@@ -1,12 +1,12 @@
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Posts List') }}
+            {{ __('Lista de posts - Admin Dashboard') }}
         </h2>
     </x-slot>
 
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -19,6 +19,7 @@
                                 <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Titulo</th>
                                 <th class="px-4 py-2">Categories</th>
+                                <th class="px-4 py-2">Author</th>
                                 <th class="px-4 py-2">Actions</th>
                             </tr>
                         </thead>
@@ -29,11 +30,13 @@
                                     <td class="border px-4 py-2">{{ $post->title }}</td>
                                     <td class="border px-4 py-2">
                                         @foreach($post->categories as $record)
-                                            <span class="bg-gray-200 text-gray-800 dark:text-gray-100 font-bold py-1 px-4 rounded-full">
-                                                {{ $record->nombre }}
+                                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-bold py-1 px-4 rounded-full">
+                                                {{ $record->name }}
                                             </span>
                                         @endforeach
                                     </td>
+
+                                    <td class="border px-4 py-2">{{ $post->user->name }}</td>
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('posts.show', $post->id) }}">
                                             <button

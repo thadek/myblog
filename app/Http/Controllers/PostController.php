@@ -10,13 +10,19 @@ use App\Models\Category;
 class PostController extends Controller
 {
     
-    public function index()
+    public function indexAdmin()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return view('posts.index', compact('posts'));
     }
 
-   
+    public function index()
+    {
+        $posts = Post::with('user')->get();
+        return view('welcome', compact('posts'));
+    }
+
+
     public function create()
     {
         $categories = Category::all();
@@ -32,11 +38,18 @@ class PostController extends Controller
             'categories' => 'required|array'
         ]);
     
-        $post = Post::create($request->only('title', 'content'));
-    
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->content;
+      
+        $post->user_id = auth()->id();
+        $post->save();
+       
         foreach ($request->categories as $categoryId) {
             $post->categories()->attach($categoryId);
         }
+
+     
     
         return redirect()->route('posts.index');
     }

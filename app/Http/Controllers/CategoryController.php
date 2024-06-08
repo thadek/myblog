@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -19,10 +20,10 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function store($request)
+    public function store(StoreCategoryRequest $request)
     {
         $request->validate([
-            'nombre' => 'required|min:5|max:100'
+            'name' => 'required|min:5|max:100'
         ]);
 
         Category::create($request->all());
@@ -39,4 +40,19 @@ class CategoryController extends Controller
     {
         return view('categories.edit', compact('category'));
     }
+
+
+    public function update(UpdateCategoryRequest $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required|min:5|max:100'
+        ]);
+
+        $category->update($request->all());
+    
+        return redirect()->route('categories.index');
+    }
+
+
+
 }

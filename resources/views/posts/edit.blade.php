@@ -19,7 +19,9 @@
                         </div>
                         <div class="mb-6">
                             <label for="content" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Content</label>
-                            <textarea id="content" name="content" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-800 leading-tight focus:outline-none focus:shadow-outline">{{ old('content', $post->content) }}</textarea>
+                            <textarea id="content" hidden name="content" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-800 leading-tight focus:outline-none focus:shadow-outline">{{ old('content', $post->content) }}</textarea>            
+                            <trix-editor input="content"></trix-editor>
+                       
                         </div>
                         <div class="flex items-center justify-between">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
@@ -31,7 +33,7 @@
                             @foreach($categories as $category)
                                 <div class="mt-2">
                                     <input type="checkbox" id="category_{{ $category->id }}" name="categories[]" value="{{ $category->id }}" {{ $post->categories->contains($category->id) ? 'checked' : '' }}>
-                                    <label for="category_{{ $category->id }}" class="ml-2 text-sm text-gray-600">{{ $category->nombre }}</label>
+                                    <label for="category_{{ $category->id }}" class="ml-2 text-sm text-gray-100">{{ $category->name }}</label>
                                 </div>
                             @endforeach
                         </div>

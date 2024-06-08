@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content'); 
+            $table->text('thumbnail')->nullable();
+            $table->foreignIdFor(\App\Models\User::class,"user_id");
             $table->timestamps();
         });
     }
