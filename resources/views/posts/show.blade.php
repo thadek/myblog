@@ -10,6 +10,10 @@
 
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
+                    <div class="mt-4 flex justify-end static">
+                        <a href="{{ route('posts.index') }}" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Volver</a>
+                    </div>
+
                     <p class="text-lg mt-2">{!!$post->content !!}</p>
 
                     <div class="mt-4">
@@ -21,9 +25,20 @@
                         </ul>
                     </div>
 
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold">Autor:</h3>
+                        <p>{{ $post->user->name }}</p>
+                    </div>
 
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold">Fecha de publicación:</h3>
+                        <p>{{ $post->created_at->format('d M, Y') }}</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold">Imagen:</h3>
+                        <img src="{{ asset('storage/thumbnails/'.$post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover mt-2">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 </x-app-layout>

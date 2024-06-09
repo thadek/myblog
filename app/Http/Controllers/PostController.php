@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -16,10 +17,18 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('user')->get();
-        return view('welcome', compact('posts'));
+        $categoryId = $request->get('category_id');
+        $posts = Post::when($categoryId, function ($query, $categoryId) {
+            return $query->whereHas('categories', function ($query) use ($categoryId) {
+                $query->where('categories.id', $categoryId);
+            });
+        })->get();
+    
+        $categories = Category::all();
+    
+        return view('welcome', compact('posts', 'categories'));
     }
 
 
@@ -35,13 +44,21 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:100',
             'content' => 'required|min:1',
-            'categories' => 'required|array'
+            'categories' => 'required|array',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-      
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $filename = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('storage/thumbnails'), $filename);
+            $post->thumbnail = $filename;
+        }
+
         $post->user_id = auth()->id();
         $post->save();
        
@@ -73,10 +90,20 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:100',
             'content' => 'required|min:1',
-            'categories' => 'required|array'
+            'categories' => 'required|array',
+            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     
-        $post->update($request->only('title', 'content'));
+        $data = $request->only('title', 'content');
+    
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $filename = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('storage/thumbnails'), $filename);
+            $data['thumbnail'] = $filename;
+        }
+    
+        $post->update($data);
     
         $post->categories()->sync($request->categories);
     
