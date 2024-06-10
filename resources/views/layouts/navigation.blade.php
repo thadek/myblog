@@ -43,9 +43,10 @@
 
 
                 @if (Route::has('login'))
-                <nav class="-mx-3 flex flex-1 mt-4 justify-end">
+                
 
-                    @auth <x-dropdown align="right" width="48">
+                    @auth 
+                    <nav class="-mx-3 flex flex-1 mt-4 justify-end"><x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                                 <div>{{ Auth::user()->name }}</div>
@@ -60,7 +61,7 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -69,14 +70,15 @@
 
                                 <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Cerrar sesión') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
                     </x-dropdown>
+                    </nav>
 
                     @else
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
                         <x-nav-link :href="route('login')">
                             {{ __(' Login') }}
                         </x-nav-link>
@@ -85,7 +87,7 @@
                   
             
                     @endauth
-                </nav>
+                
                 @endif
 
 

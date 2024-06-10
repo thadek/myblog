@@ -21,8 +21,13 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return 
+            [
+                'title' => 'required|min:5|max:100',
+                'content' => 'required|min:1',
+                'categories' => 'required|array',
+                'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]
+        ;
     }
 }

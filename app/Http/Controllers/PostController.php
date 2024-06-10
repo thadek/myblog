@@ -41,12 +41,7 @@ class PostController extends Controller
    
     public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:5|max:100',
-            'content' => 'required|min:1',
-            'categories' => 'required|array',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+      
     
         $post = new Post();
         $post->title = $request->title;

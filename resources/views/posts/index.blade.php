@@ -12,15 +12,15 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('posts.create') }}"
-                        class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Create Post</a>
+                        class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">{{ __('Crear post') }}</a>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
                                 <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Titulo</th>
-                                <th class="px-4 py-2">Categories</th>
-                                <th class="px-4 py-2">Author</th>
-                                <th class="px-4 py-2">Actions</th>
+                                <th class="px-4 py-2">Categorias</th>
+                                <th class="px-4 py-2">Autor</th>
+                                <th class="px-4 py-2">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

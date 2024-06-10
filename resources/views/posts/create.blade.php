@@ -55,7 +55,7 @@
                             @foreach($categories as $category)
                                 <div class="mt-2">
                                     <input type="checkbox" id="category_{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
-                                    <label for="category_{{ $category->id }}" class="ml-2 text-sm text-black">{{ $category->name }}</label>
+                                    <label for="category_{{ $category->id }}" class="ml-2 text-sm text-gray-700 dark:text-gray-300">{{ $category->name }}</label>
                                 </div>
                             @endforeach
                         </div>
