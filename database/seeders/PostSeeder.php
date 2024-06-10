@@ -21,6 +21,11 @@ class PostSeeder extends Seeder
         ]);
 
 
+        $category2 = Category::factory()->create([
+            'name' => 'Recetas Saladas',
+        ]);
+
+
         Post::factory()
         ->hasAttached($category)
         ->create([
@@ -34,7 +39,7 @@ class PostSeeder extends Seeder
 
        
 
-        Post::factory()
+       /* Post::factory()
         ->hasAttached($category)
         ->create([
             'title' => 'Cheesecake',
@@ -43,9 +48,19 @@ class PostSeeder extends Seeder
             'user_id' => 1,
             'created_at' => '2024-05-23 19:47:15',
             'updated_at' => '2024-05-23 19:47:15'
-        ]);
+        ]); */
 
-       
+        Post::factory()
+        ->hasAttached($category2)
+        ->create([
+            'title' => "Pizza Napolitana",
+            'content' => "<div><strong>Ingredientes</strong><br>3 tazas de harina 000<br>2 cdas. de sal<br>1 cda. de levadura en polvo<br>1 taza de agua<br>Para la salsa<br>400 gr. de tomates en conserva<br>1 diente de ajo<br>1 cda. de tomillo seco<br>200 gr. de muzzarella de búfala<br>Orégano<br><br><strong>Pasos</strong><br>Hacer la masa colocando la harina en un bowl y hacer un hueco en el centro.<br>Colocar la levadura en polvo y el agua tibia.<br>Mezclar todo y dejar reposar 30 minutos.<br>Colocar los tomates en una olla junto al ajo y el tomillo.<br>Estirar la masa y colocar la salsa de tomate, el queso y orégano.<br>Hornear 5 minutos en horno fuerte.</div>",
+            'thumbnail' => '1718004548.png',
+            'user_id' => 1,
+            'created_at' => '2024-06-06 19:47:15',
+            'updated_at' => '2024-06-06 19:47:15'
+
+        ]);
 
       
     }

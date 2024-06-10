@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blog Laravel PWA </title>
+    <title>CiberRecetas</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -39,7 +39,7 @@
             
         
             @foreach ($posts as $post)
-            <div class="flex  dark:bg-gray-800 sm:rounded-xl">
+            <div class="flex bg-gray-200 dark:bg-gray-800 sm:rounded-xl">
                     <div class="w-96 h-96 rounded-l-xl flex-none bg-cover text-center overflow-hidden" style="background-image:url('{{ asset('storage/thumbnails/'.$post->thumbnail)}}')" title="{{ $post->title }}"></div>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
 

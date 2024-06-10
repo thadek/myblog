@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('categories.create') }}"
-                        class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Create Category</a>
+                        class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Crear Categoría</a>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>

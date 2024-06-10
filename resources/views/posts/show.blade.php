@@ -1,43 +1,43 @@
 <x-app-layout>
-   
 
-    <div class="py-2">
 
-        
+    <div class="">
+
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100"> {{ $post->title  }}</h1>
+        
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class=" text-gray-900 dark:text-gray-100">
 
-                    <div class="mt-4 flex justify-end static">
-                        <a href="{{ route('posts.index') }}" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Volver</a>
-                    </div>
+                    <img src="{{ asset('storage/thumbnails/'.$post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-80 object-cover ">
 
-                    <p class="text-lg mt-2">{!!$post->content !!}</p>
+                    <div class=" p-6">
 
-                    <div class="mt-4">
-                        <h3 class="text-lg font-semibold">Categorías:</h3>
-                        <ul>
-                            @foreach($post->categories as $category)
-                            <li>{{ $category->name }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100"> {{ $post->title  }}</h1>
+                       
 
-                    <div class="mt-4">
-                        <h3 class="text-lg font-semibold">Autor:</h3>
-                        <p>{{ $post->user->name }}</p>
-                    </div>
+                        <p class="text-lg mt-2">{!!$post->content !!}</p>
 
-                    <div class="mt-4">
-                        <h3 class="text-lg font-semibold">Fecha de publicación:</h3>
-                        <p>{{ $post->created_at->format('d M, Y') }}</p>
-                    </div>
+                        <div class="mt-4">
+                            <h3 class="text-lg font-semibold">Categorías:</h3>
+                            <ul>
+                                @foreach($post->categories as $category)
+                                <li>{{ $category->name }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
 
-                    <div class="mt-4">
-                        <h3 class="text-lg font-semibold">Imagen:</h3>
-                        <img src="{{ asset('storage/thumbnails/'.$post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover mt-2">
+                        <div class="mt-4">
+                            <h3 class="text-lg font-semibold">Autor:</h3>
+                            <p>{{ $post->user->name }}</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h3 class="text-lg font-semibold">Fecha de publicación:</h3>
+                            <p>{{ $post->created_at->format('d M, Y') }}</p>
+                        </div>
+
                     </div>
                 </div>
             </div>

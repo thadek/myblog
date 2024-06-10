@@ -32,7 +32,7 @@
                     <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Title</label>
+                            <label for="title" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Titulo</label>
                             <input type="text" id="title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-800 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-6">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="flex items-center justify-between">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                                Create Post
+                                Crear Post
                             </button>
                         </div>
                         <div class="mb-4 mt-4">
