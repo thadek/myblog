@@ -75,4 +75,14 @@
 
 @section("scripts")
 <script src=”https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.js" integrity=”sha512-EkeUJgnk4loe2w6/w2sDdVmrFAj+znkMvAZN6sje3ffEDkxTXDiPq99JpWASW+FyriFah5HqxrXKmMiZr/2iQA==” crossorigin=”anonymous” defer></script>
+
+<script>
+    document.getElementById('thumbnail').addEventListener('change', function(e) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('thumbnail-preview').src = e.target.result;
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+</script>
 @endsection

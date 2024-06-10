@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Blog Admin',
             'email' => 'admin@blog.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'role' => 'admin'
         ]);
 
         
