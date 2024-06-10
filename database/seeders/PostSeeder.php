@@ -34,7 +34,8 @@ class PostSeeder extends Seeder
             'thumbnail' => '1717975336.png',
             'user_id' => 1,
             'created_at' => '2024-05-23 19:47:15',
-            'updated_at' => '2024-05-23 19:47:15'
+            'updated_at' => '2024-05-23 19:47:15',
+            'is_published' => true
         ]);
 
        
@@ -58,7 +59,8 @@ class PostSeeder extends Seeder
             'thumbnail' => '1718004548.png',
             'user_id' => 1,
             'created_at' => '2024-06-06 19:47:15',
-            'updated_at' => '2024-06-06 19:47:15'
+            'updated_at' => '2024-06-06 19:47:15',
+            'is_published' => true
 
         ]);
 

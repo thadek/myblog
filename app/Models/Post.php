@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'content','thumbnail'];
+    protected $fillable = ['title', 'content','thumbnail','is_published'];
 
     public function categories() : BelongsToMany
     {

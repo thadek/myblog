@@ -59,6 +59,12 @@
                                 </div>
                             @endforeach
                         </div>
+
+                        <!-- Is published -->
+                        <div class="mb-4">
+                            <label for="is_published" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Visible</label>
+                            <input type="checkbox" id="is_published" name="is_published" value="1">
+
                         </div>
                     
                     </form>

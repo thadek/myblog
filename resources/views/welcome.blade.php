@@ -39,6 +39,7 @@
             
         
             @foreach ($posts as $post)
+            @if($post->is_published)
             <div class="flex bg-gray-200 dark:bg-gray-800 sm:rounded-xl">
                     <div class="w-96 h-96 rounded-l-xl flex-none bg-cover text-center overflow-hidden" style="background-image:url('{{ asset('storage/thumbnails/'.$post->thumbnail)}}')" title="{{ $post->title }}"></div>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -58,6 +59,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
 
         </div>

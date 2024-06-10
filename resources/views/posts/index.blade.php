@@ -20,6 +20,7 @@
                                 <th class="px-4 py-2">Titulo</th>
                                 <th class="px-4 py-2">Categorias</th>
                                 <th class="px-4 py-2">Autor</th>
+                                <th class="px-4 py-2">Publicado</th>
                                 <th class="px-4 py-2">Acciones</th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                     </td>
 
                                     <td class="border px-4 py-2">{{ $post->user->name }}</td>
+                                    <td class="border px-4 py-2">{{ $post->is_published ? 'Si' : 'No' }}</td>
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('posts.show', $post->id) }}">
                                             <button

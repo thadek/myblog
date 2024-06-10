@@ -22,10 +22,7 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:5|max:100'
-        ]);
-
+      
         Category::create($request->all());
 
         return redirect()->route('categories.index');
@@ -44,9 +41,6 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|min:5|max:100'
-        ]);
 
         $category->update($request->all());
     

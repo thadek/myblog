@@ -46,6 +46,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->is_published = $request->is_published? true : false;
 
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
@@ -82,14 +83,9 @@ class PostController extends Controller
     
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|min:5|max:100',
-            'content' => 'required|min:1',
-            'categories' => 'required|array',
-            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+      
     
-        $data = $request->only('title', 'content');
+        $data = $request->only('title', 'content','is_published');
     
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');

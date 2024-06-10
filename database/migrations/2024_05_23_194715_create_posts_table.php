@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->constrained('users')
             ->cascadeOnUpdate();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }
